@@ -358,31 +358,7 @@ body.full-app .icon-card h3{color:#102516!important;}
 .icon-card, .icon-card h3, .icon-card .title, .icon-card .label, .icon-card p, .icon-card span { text-align: center !important; }
 </style>
 </head>
-<body class="app-locked">
-<div class="start-screen" id="startScreen">
-<div class="start-card">
-<div class="start-icon"><span aria-label="Símbolo de reciclagem" class="recycle-red" role="img">♻︎</span></div>
-<div class="start-kicker">FEIRA DE CIÊNCIAS</div>
-<h1>Lixeira Inteligente</h1>
-<p class="start-subtitle">para garrafas PET</p>
-<p class="start-message">Juntos por um futuro mais limpo e um planeta melhor!</p>
-<div class="start-info">
-<strong>Alunos</strong>
-<span>Eloah, Lucas, Mathias, Oliveira e Voss</span>
-<strong>Série</strong>
-<span>7 ano A</span>
-</div>
-<div class="start-instruction">
-<div class="start-qr">▦</div>
-<div>
-<b>Acesso pelo QR Code da lixeira</b>
-<p>Ao apontar a câmera para o QR Code da lixeira, o aplicativo abrirá diretamente na tela de cadastro. Após o cadastro, os demais ícones serão abertos em uma nova aba.</p>
-</div>
-</div>
-<button class="btn green start-demo-btn" onclick="abrirCadastro()">Simular leitura do QR Code</button>
-<div class="start-demo-note">Projeto demonstrativo — dados simulados para apresentação.</div>
-</div>
-</div>
+<body class="app-ready pre-login">
 <div class="tablet">
 <header class="topbar">
 <div class="coast">🌿 ☁️ <svg aria-label="Estrela do mar" class="starfish" role="img" viewbox="0 0 100 100"><path d="M50 4c6 0 8 23 12 25 4 2 24-10 28-5 4 5-15 18-15 23s23 15 21 21c-2 7-25-1-29 3-4 4 0 28-7 29-7 1-11-22-16-24-5-2-24 11-28 5-4-6 16-18 15-23-1-5-23-16-20-22 3-6 25 2 29-2 4-4 3-29 10-30z" fill="#159447" stroke="#086f3e" stroke-width="4"></path><circle cx="50" cy="50" fill="#dff2e8" r="5"></circle><circle cx="50" cy="25" fill="#dff2e8" r="2.5"></circle><circle cx="73" cy="39" fill="#dff2e8" r="2.5"></circle><circle cx="69" cy="67" fill="#dff2e8" r="2.5"></circle><circle cx="31" cy="67" fill="#dff2e8" r="2.5"></circle><circle cx="27" cy="39" fill="#dff2e8" r="2.5"></circle></svg> 🌿</div>
@@ -424,11 +400,11 @@ body.full-app .icon-card h3{color:#102516!important;}
 <div class="qrbox"><div aria-label="Representação visual de QR Code" class="qr"></div>
 <div><h3>Escaneie o QR Code impresso na lixeira</h3><p>O QR Code da lixeira é o ponto de entrada do aplicativo. Ao escaneá-lo com a câmera, esta tela de cadastro será aberta automaticamente.</p><button class="btn green" onclick="abrirCadastro()">Simular leitura do QR Code</button></div></div>
 </section>
-<section class="panel" id="login">
+<section class="panel active" id="login">
 <div class="panel-head"><h2>👤 Cadastro / Acesso</h2><button class="close" onclick="closePanels()">Fechar</button></div>
 <div class="login-grid"><div><label>Nome</label><input id="nome" placeholder="Digite seu nome"/></div><div><label>CPF</label><input id="cpf" maxlength="14" placeholder="000.000.000-00"/></div></div>
-<div class="row" style="margin-top:14px"><button class="btn" onclick="fazerLogin()">Entrar</button><button class="btn light" onclick="openPanel('acesso')">Voltar ao QR Code</button></div>
-<div class="login-qr-note">📷 Acesso iniciado pelo QR Code. Faça o cadastro para liberar as demais funções do aplicativo.</div>
+<div class="row" style="margin-top:14px"><button class="btn" onclick="fazerLogin()">Entrar</button></div>
+<div class="login-qr-note">Faça o cadastro para liberar as demais funções do aplicativo.</div>
 <div id="loginMsg"></div>
 </section>
 <section class="panel" id="depositos">
@@ -591,7 +567,8 @@ function sairAplicativo(){
   window.scrollTo({top:0,behavior:'smooth'});
 }
 atualizar();
-iniciarFluxo();
+// Abertura padrão: tela de login.
+if (!location.hash) { openPanel('login'); } else { iniciarFluxo(); }
 </script>
 <div aria-labelledby="benefitTitle" aria-modal="true" class="benefit-overlay" id="benefitOverlay" onclick="closeBenefit(event)" role="dialog">
 <div class="benefit-modal" onclick="event.stopPropagation()">
